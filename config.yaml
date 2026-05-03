@@ -1,0 +1,33 @@
+llm:
+  provider: "openai"
+  model: "gpt-4o"
+  api_key_env: "OPENAI_API_KEY"
+  temperature: 0.1
+  max_tokens: 4096
+
+analysis:
+  max_path_depth: 20
+  target_language: "python"
+  ignore_patterns:
+    - "**/test_*.py"
+    - "**/tests/**"
+    - "**/__pycache__/**"
+  entry_functions:
+    - "*"
+
+generation:
+  test_framework: "pytest"
+  max_test_cases_per_function: 50
+  include_edge_cases: true
+  include_boundary_tests: true
+  include_null_tests: true
+
+correction:
+  max_retries: 5
+  retry_delay_seconds: 1
+  fail_fast: false
+
+execution:
+  timeout_seconds: 60
+  coverage_threshold: 80
+  working_dir: ".test_workspace"
